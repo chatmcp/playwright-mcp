@@ -125,7 +125,7 @@ const startHeartbeat = (server: Server) => {
     ]).then(() => {
       setTimeout(beat, 3000);
     }).catch(() => {
-      void server.close();
+      // void server.close();
     });
   };
 
