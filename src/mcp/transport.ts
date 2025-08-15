@@ -74,6 +74,7 @@ async function handleSSE(serverBackendFactory: ServerBackendFactory, req: http.I
 
 async function handleStreamable(serverBackendFactory: ServerBackendFactory, req: http.IncomingMessage, res: http.ServerResponse, sessions: Map<string, StreamableHTTPServerTransport>) {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
+  console.log('sessionId', sessionId);
   if (sessionId) {
     const transport = sessions.get(sessionId);
     if (!transport) {
@@ -97,7 +98,7 @@ async function handleStreamable(serverBackendFactory: ServerBackendFactory, req:
     transport.onclose = () => {
       if (!transport.sessionId)
         return;
-      sessions.delete(transport.sessionId);
+      // sessions.delete(transport.sessionId);
       testDebug(`delete http session: ${transport.sessionId}`);
     };
 
